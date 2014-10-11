@@ -1,30 +1,50 @@
 package com.opsource;
 
+import com.opsource.command.runner.ConsoleRunner;
 import com.opsource.pojo.Commands;
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.Resource;
+import org.xml.sax.SAXException;
 
-import java.io.DataInputStream;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class MainApp {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
-        boolean running = true;
+    private static ApplicationContext applicationContext;
+    private static ConsoleRunner consoleRunner;
 
+    static {
+        applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
+        consoleRunner = applicationContext.getAutowireCapableBeanFactory().getBean(ConsoleRunner.class);
+    }
+
+    // FIXME: exceptions should not be thrown but rather handled gracefully
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException, XPathExpressionException, ParserConfigurationException, SAXException, URISyntaxException {
         showHelp();
 
-        while (running) {
-            DataInputStream in = new DataInputStream(System.in);
-            String option = in.readLine();
+        while (true) {
 
+            // changing deprecated DataInputStream.readline with scanner
+            // TODO: explain performance benefits
+            Scanner scanIn = new Scanner(System.in);
+            String option = scanIn.nextLine();
+
+            // TODO: explain why switch w/ enum is better that comparing on strings directly
+            // NOTE: commands are now case insensitive
+            // TODO: make add server accept file as an argument
             switch (Commands.getCommandFromCommandString(option)){
                 case HELP:
-                    showHelp(); break;
+                    consoleRunner.help(); break;
                 case QUIT:
-                    System.exit(0); break;
+                    consoleRunner.quit(); break;
                 case ADD_SERVER:
-                    break;
+                    consoleRunner.addServer(getFilePath("server_1.xml")); break;
                 case DELETE_SERVER:
                     break;
                 case COUNT_SERVERS:
@@ -32,9 +52,15 @@ public class MainApp {
                 case EDIT_SERVER:
                     break;
                 case LIST_SERVERS:
-                    break;
+                    consoleRunner.listServers(); break;
             }
         }
+    }
+
+    private static String getFilePath(String fileName) throws URISyntaxException, IOException {
+        Resource resource = applicationContext.getResource("classpath:" + fileName);
+
+        return resource.getURL().getPath();
     }
 
     private static void showHelp() {

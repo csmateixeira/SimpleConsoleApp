@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddServerCommand implements Command {
+public class EditServerCommand implements Command {
 
     @Autowired
     ServerDao serverDao;
 
     @Override
     public void run() {
+
     }
 
     @Override
     public void run(Server args) {
-        // TODO: check if server exists to tell user it exists already
-        Server server = serverDao.addServer(args);
+        Server server = serverDao.editServer(args);
 
-        System.out.println("Added server ID: " + server.getId() + " name: " + server.getName());
+        System.out.println("Server details changed to " + server.getId() + server.getName());
     }
 }

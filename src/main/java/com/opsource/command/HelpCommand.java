@@ -1,10 +1,10 @@
 package com.opsource.command;
 
+import com.opsource.dao.entities.Server;
 import com.opsource.pojo.Commands;
+import org.springframework.stereotype.Component;
 
-/**
- * Created by Nixka on 11/10/2014.
- */
+@Component
 public class HelpCommand implements Command {
 
     @Override
@@ -16,4 +16,11 @@ public class HelpCommand implements Command {
         System.out.println(Commands.DELETE_SERVER.getDescription());
         System.out.println(Commands.LIST_SERVERS.getDescription());
     }
+
+    @Override
+    public void run(Server args) {
+
+    }
+
+
 }

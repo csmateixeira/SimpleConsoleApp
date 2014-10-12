@@ -1,8 +1,9 @@
 package com.opsource.dao;
 
 import com.opsource.dao.repository.ServerRepository;
-import com.opsource.pojo.exceptions.ServerNotFoundException;
 import com.opsource.model.Server;
+import com.opsource.pojo.exceptions.DuplicateServerException;
+import com.opsource.pojo.exceptions.ServerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,12 @@ public class ServerDaoImpl implements ServerDao {
     }
 
     @Override
-    public Server addServer(Server server) {
+    public Server addServer(Server server) throws DuplicateServerException {
+        Server existing = serverRepository.findOne(server.getId());
+
+        if (existing != null)
+            throw new DuplicateServerException();
+
         return serverRepository.save(server);
     }
 
@@ -33,7 +39,7 @@ public class ServerDaoImpl implements ServerDao {
     public Server editServer(Server server) throws ServerNotFoundException {
         Server updated = serverRepository.findOne(server.getId());
 
-        if(updated == null)
+        if (updated == null)
             throw new ServerNotFoundException();
 
         updated.setName(server.getName());
@@ -42,7 +48,12 @@ public class ServerDaoImpl implements ServerDao {
     }
 
     @Override
-    public void deleteServer(int server) {
+    public void deleteServer(int server) throws ServerNotFoundException {
+        Server existing = serverRepository.findOne(server);
+
+        if (existing == null)
+            throw new ServerNotFoundException();
+
         serverRepository.delete(server);
     }
 }

@@ -7,7 +7,7 @@ public class ServerNotFoundException extends Exception {
     }
 
     public ServerNotFoundException(){
-        super("Server ID  not found");
+        super("server not found");
 
     }
 }

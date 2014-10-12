@@ -2,6 +2,7 @@ package com.opsource.controller.command;
 
 import com.opsource.dao.ServerDao;
 import com.opsource.model.Server;
+import com.opsource.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,17 +15,24 @@ public class ListServersCommand implements Command {
     ServerDao serverDao;
 
     @Override
-    public void run() {
-        // TODO: change output when there are no servers in the DB
-        System.out.println("Servers in the database: ");
-
+    public Status run() {
         List<Server> servers = serverDao.listAllServers();
 
+        if(servers == null || servers.isEmpty())
+            return new Status(false, " # no servers in database");
+
+        String message = "";
+
         for (Server server : servers){
-            System.out.println(" # ID: " + server.getId() + " # Name: " + server.getName());
+            message += " # id: " + server.getId() + " # id: " + server.getName();
+            message += System.lineSeparator();
         }
+
+        return new Status(false, message);
     }
 
     @Override
-    public void run(Server args) {}
+    public Status run(Server args) {
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package com.opsource.controller.command;
 
 import com.opsource.dao.ServerDao;
 import com.opsource.model.Server;
+import com.opsource.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +13,12 @@ public class CountServersCommand implements Command {
     ServerDao serverDao;
 
     @Override
-    public void run() {
-        System.out.println("Currently (" + serverDao.countServers() + ") server(s) in the database");
+    public Status run() {
+        return new Status(false, "# Found " + serverDao.countServers() + " server(s)");
     }
 
     @Override
-    public void run(Server args) {
-
+    public Status run(Server args) {
+        return null;
     }
 }

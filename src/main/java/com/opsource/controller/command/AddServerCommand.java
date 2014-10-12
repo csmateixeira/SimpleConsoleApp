@@ -2,24 +2,38 @@ package com.opsource.controller.command;
 
 import com.opsource.dao.ServerDao;
 import com.opsource.model.Server;
+import com.opsource.model.Status;
+import com.opsource.pojo.exceptions.DuplicateServerException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AddServerCommand implements Command {
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     ServerDao serverDao;
 
     @Override
-    public void run() {
+    public Status run() {
+        return null;
     }
 
     @Override
-    public void run(Server args) {
-        // TODO: check if server exists to tell user it exists already
-        Server server = serverDao.addServer(args);
+    public Status run(Server args) {
+        Server server = null;
 
-        System.out.println("Added server ID: " + server.getId() + " name: " + server.getName());
+        try {
+            server = serverDao.addServer(args);
+
+        } catch (DuplicateServerException e) {
+            LOGGER.error(e.getMessage(), e);
+
+            return new Status(true, " # " + e.getMessage());
+        }
+
+        return new Status(false, "# id " + server.getId() + " # name " + server.getName());
     }
 }

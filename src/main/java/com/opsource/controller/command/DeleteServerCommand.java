@@ -2,22 +2,37 @@ package com.opsource.controller.command;
 
 import com.opsource.dao.ServerDao;
 import com.opsource.model.Server;
+import com.opsource.model.Status;
+import com.opsource.pojo.exceptions.ServerNotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeleteServerCommand implements Command {
+private static final Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     ServerDao serverDao;
 
     @Override
-    public void run() { }
+    public Status run() {
+        return null;
+    }
 
     @Override
-    public void run(Server args) {
-        serverDao.deleteServer(args.getId());
+    public Status run(Server args) {
 
-        System.out.println("Deleted server ID: " + args.getId() + " name: " + args.getName());
+        try {
+            serverDao.deleteServer(args.getId());
+
+        } catch (ServerNotFoundException e) {
+            LOGGER.error(e.getMessage(), e);
+
+            return new Status(true, " # " + e.getMessage());
+        }
+
+        return new Status(false, " # id " + args.getId());
     }
 }

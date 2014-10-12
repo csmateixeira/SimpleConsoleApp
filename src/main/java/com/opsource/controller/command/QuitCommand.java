@@ -1,18 +1,22 @@
 package com.opsource.controller.command;
 
 import com.opsource.model.Server;
+import com.opsource.model.Status;
 import org.springframework.stereotype.Component;
 
 @Component
 public class QuitCommand implements Command {
 
     @Override
-    public void run() {
+    public Status run() {
+
         System.exit(0);
+
+        return null;
     }
 
     @Override
-    public void run(Server args) {
-
+    public Status run(Server args) {
+        return null;
     }
 }

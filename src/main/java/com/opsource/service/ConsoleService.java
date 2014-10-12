@@ -1,6 +1,7 @@
 package com.opsource.service;
 
 import com.opsource.controller.command.*;
+import com.opsource.model.Status;
 import com.opsource.pojo.exceptions.ServerNotFoundException;
 import com.opsource.model.Server;
 import com.opsource.pojo.XMLServerParser;
@@ -40,21 +41,22 @@ public class ConsoleService {
     @Autowired
     CountServersCommand countServersCommand;
 
-    public void listServers(){ listServersCommand.run(); }
-    public void countServers(){ countServersCommand.run(); }
+    public Status listServers(){ return listServersCommand.run(); }
+    public Status countServers(){ return countServersCommand.run(); }
 
-    public void addServer(String file) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
-        addServerCommand.run(XMLServerParser.parse(file));
-    }
-    public void deleteServer(int id){ deleteServerCommand.run(new Server(id, null)); }
-    public void editServer(int id, String name) { editServerCommand.run(new Server(id, name)); }
-
-    public void help() {
-        helpCommand.run();
+    public Status addServer(String file) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
+        return addServerCommand.run(XMLServerParser.parse(file));
     }
 
-    public void quit() {
-        quitCommand.run();
+    public Status deleteServer(int id){ return deleteServerCommand.run(new Server(id, null)); }
+    public Status editServer(int id, String name) { return editServerCommand.run(new Server(id, name)); }
+
+    public Status help() {
+        return helpCommand.run();
+    }
+
+    public Status quit() {
+        return quitCommand.run();
     }
 
 }

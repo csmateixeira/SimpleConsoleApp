@@ -10,7 +10,9 @@ public enum Commands {
     ADD_SERVER ("addServer", "addServer to display the current number of servers present"),
     DELETE_SERVER ("deleteServer", "deleteServer to delete a server (takes one more arg - the id of the server to delete)"),
     EDIT_SERVER ("editServer", "editServer to change the name of a server identified by id (takes 2 additional args - the id and the new name)"),
-    LIST_SERVERS ("listServers", "listServers to display details of all servers servers");
+    LIST_SERVERS ("listServers", "listServers to display details of all servers servers"),
+
+    INVALID_COMMAND ("invalid", "invalid command placeholder");
 
     private String command, description;
 
@@ -34,6 +36,6 @@ public enum Commands {
                 return c;
         }
 
-        return null;
+        return INVALID_COMMAND;
     }
 }

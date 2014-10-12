@@ -1,7 +1,7 @@
-package com.opsource.command;
+package com.opsource.controller.command;
 
 import com.opsource.dao.ServerDao;
-import com.opsource.dao.entities.Server;
+import com.opsource.model.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

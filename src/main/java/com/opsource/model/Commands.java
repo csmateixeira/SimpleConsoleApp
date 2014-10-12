@@ -1,4 +1,4 @@
-package com.opsource.pojo;
+package com.opsource.model;
 
 /**
  * Created by Nixka on 11/10/2014.

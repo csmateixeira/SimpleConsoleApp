@@ -1,25 +1,23 @@
-package com.opsource.command;
+package com.opsource.controller.command;
 
 import com.opsource.dao.ServerDao;
-import com.opsource.dao.entities.Server;
+import com.opsource.model.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EditServerCommand implements Command {
+public class CountServersCommand implements Command {
 
     @Autowired
     ServerDao serverDao;
 
     @Override
     public void run() {
-
+        System.out.println("Currently (" + serverDao.countServers() + ") server(s) in the database");
     }
 
     @Override
     public void run(Server args) {
-        Server server = serverDao.editServer(args);
 
-        System.out.println("Server details changed to " + server.getId() + server.getName());
     }
 }

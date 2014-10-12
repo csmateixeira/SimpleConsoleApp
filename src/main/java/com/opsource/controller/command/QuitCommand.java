@@ -1,6 +1,6 @@
-package com.opsource.command;
+package com.opsource.controller.command;
 
-import com.opsource.dao.entities.Server;
+import com.opsource.model.Server;
 import org.springframework.stereotype.Component;
 
 @Component

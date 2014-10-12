@@ -1,6 +1,6 @@
 package com.opsource.pojo;
 
-import com.opsource.dao.entities.Server;
+import com.opsource.model.Server;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 

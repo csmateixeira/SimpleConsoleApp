@@ -1,6 +1,6 @@
 package com.opsource.dao.repository;
 
-import com.opsource.dao.entities.Server;
+import com.opsource.model.Server;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

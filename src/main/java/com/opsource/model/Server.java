@@ -1,4 +1,4 @@
-package com.opsource.dao.entities;
+package com.opsource.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

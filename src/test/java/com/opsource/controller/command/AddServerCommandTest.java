@@ -5,7 +5,6 @@ import com.opsource.model.Server;
 import com.opsource.model.Status;
 import com.opsource.pojo.Messages;
 import com.opsource.pojo.exceptions.DuplicateServerException;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

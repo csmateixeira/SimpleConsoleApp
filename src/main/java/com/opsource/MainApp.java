@@ -8,6 +8,7 @@ import com.opsource.views.ViewFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class MainApp {
@@ -29,11 +30,15 @@ public class MainApp {
         while (true) {
 
             // changing deprecated DataInputStream.readline with scanner
-            // NOTE: explain performance benefits
-            Scanner scanIn = new Scanner(System.in);
-            String option = scanIn.nextLine();
+            try{
+                Scanner scanIn = new Scanner(System.in);
+                String option = scanIn.nextLine();
+                consoleController.runConsole(option);
 
-            consoleController.runConsole(option);
+            } catch (NoSuchElementException e){
+                System.err.println("execution interrupted");
+                System.exit(1);
+            }
 
         }
     }

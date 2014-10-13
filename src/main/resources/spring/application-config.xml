@@ -11,19 +11,18 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="com.opsource"/>
+    <context:property-placeholder location="classpath:db.properties" />
 
     <jpa:repositories base-package="com.opsource.dao.repository" />
 
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/opsource_db"/>
-        <property name="username" value="carla"/>
-        <property name="password" value="%WDRthu37%"/>
+        <property name="url" value="${dburl}"/>
+        <property name="username" value="${dbuser}"/>
+        <property name="password" value="${dbpassword}"/>
     </bean>
 
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="showSql" value="false"/>
-        <property name="generateDdl" value="true"/>
         <property name="database" value="MYSQL"/>
     </bean>
 

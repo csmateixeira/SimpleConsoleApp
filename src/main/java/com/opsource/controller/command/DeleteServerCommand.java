@@ -3,6 +3,7 @@ package com.opsource.controller.command;
 import com.opsource.dao.ServerDao;
 import com.opsource.model.Server;
 import com.opsource.model.Status;
+import com.opsource.pojo.Messages;
 import com.opsource.pojo.exceptions.ServerNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +34,10 @@ private static final Logger LOGGER = LogManager.getLogger();
             return new Status(true, " # " + e.getMessage());
         }
 
-        return new Status(false, " # id " + args.getId());
+        String statusMessage =
+                Messages.ID
+                        .replace(Messages.SERVER_ID, String.valueOf(args.getId()));
+
+        return new Status(false, statusMessage);
     }
 }

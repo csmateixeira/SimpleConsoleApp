@@ -3,6 +3,7 @@ package com.opsource.controller;
 import com.opsource.model.Commands;
 import com.opsource.model.Status;
 import com.opsource.pojo.Constants;
+import com.opsource.pojo.ResourceLocator;
 import com.opsource.pojo.exceptions.InvalidServerIdException;
 import com.opsource.service.ConsoleService;
 import com.opsource.views.ViewFactory;
@@ -27,7 +28,7 @@ public class ConsoleController {
     ConsoleService consoleService;
 
     @Autowired
-    ApplicationContext applicationContext;
+    ResourceLocator resourceLocator;
 
     @Autowired
     ViewFactory viewFactory;
@@ -101,10 +102,7 @@ public class ConsoleController {
         try {
             String file = (commandString.length > 1) ? commandString[1] : Constants.DEFAULT_ADD_SERVER_FILE;
 
-            Resource resource = applicationContext.getResource("classpath:" + file);
-            String filePath = resource.getURL().getPath();
-
-            return consoleService.addServer(filePath);
+            return consoleService.addServer(resourceLocator.getResourcePath(file));
 
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
@@ -130,4 +128,5 @@ public class ConsoleController {
         }
 
     }
+
 }

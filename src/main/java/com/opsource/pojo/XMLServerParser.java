@@ -11,9 +11,6 @@ import javax.xml.xpath.*;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Created by Nixka on 11/10/2014.
- */
 public class XMLServerParser {
 
     // TODO: error handling - what if file is empty

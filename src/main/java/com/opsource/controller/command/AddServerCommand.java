@@ -10,6 +10,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Carla Teixeira
+ * Command that implements addServer
+ */
 @Component
 public class AddServerCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -22,6 +26,11 @@ public class AddServerCommand implements Command {
         return null;
     }
 
+    /**
+     * Runs the command
+     * @param args command arguments (server to add)
+     * @return status with added server id and name
+     */
     @Override
     public Status run(Server args) {
         Server server = null;

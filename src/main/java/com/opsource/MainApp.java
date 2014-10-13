@@ -11,6 +11,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * @author Carla Teixeira
+ */
 public class MainApp {
 
     private static ApplicationContext applicationContext;

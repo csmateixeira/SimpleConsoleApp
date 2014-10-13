@@ -1,5 +1,9 @@
 package com.opsource.pojo.exceptions;
 
+/**
+ * @author Carla Teixeira
+ * Exception for duplicate servers
+ */
 public class DuplicateServerException extends Exception {
 
     public DuplicateServerException() {

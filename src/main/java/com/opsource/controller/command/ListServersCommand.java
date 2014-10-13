@@ -9,12 +9,20 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * @author Carla Teixeira
+ * Command that implements listServers
+ */
 @Component
 public class ListServersCommand implements Command {
 
     @Autowired
     ServerDao serverDao;
 
+    /**
+     * Runs the command
+      * @return status with list of servers
+     */
     @Override
     public Status run() {
         List<Server> servers = serverDao.listAllServers();

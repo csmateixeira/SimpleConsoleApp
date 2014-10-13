@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class HelpView implements View{
 
     /**
-     * Renders the help view
-     * @param status Status returned by the command
+     * Renders the view
+     * @param status status from the help command
      */
     @Override
     public void render(Status status) {

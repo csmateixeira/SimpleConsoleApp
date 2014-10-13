@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Carla Teixeira
+ * JPA repository for database access
+ */
 @Repository
 public interface ServerRepository extends CrudRepository<Server, Integer>{
 

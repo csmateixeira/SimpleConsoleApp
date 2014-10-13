@@ -20,6 +20,10 @@ import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+/**
+ * @author Carla Teixeira
+ * Controller for the console
+ */
 @Controller
 public class ConsoleController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -33,6 +37,10 @@ public class ConsoleController {
     @Autowired
     ViewFactory viewFactory;
 
+    /**
+     * Runs the console until quit command is issued or execution is interrupted
+     * @param option command line argument
+     */
     public void runConsole(String option) {
         // get command and arguments
         String[] commandString = option.split(" ");

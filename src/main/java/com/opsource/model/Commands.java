@@ -1,5 +1,9 @@
 package com.opsource.model;
 
+/**
+ * @author Carla Teixeira
+ * Possible commands and their descriptions
+ */
 public enum Commands {
     HELP ("help", "displays this message"),
     QUIT ("quit", "quits the program"),
@@ -26,6 +30,11 @@ public enum Commands {
         return description;
     }
 
+    /**
+     * Get command details from command name
+     * @param command command name
+     * @return command details
+     */
     public static Commands getCommandFromCommandString(String command){
 
         for (Commands c : values()){

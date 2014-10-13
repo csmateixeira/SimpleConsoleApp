@@ -5,6 +5,10 @@ import com.opsource.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Carla Teixeira
+ * Factory for views
+ */
 @Component
 public class ViewFactory {
 
@@ -29,6 +33,11 @@ public class ViewFactory {
     @Autowired
     InvalidCommandView invalidCommandView;
 
+    /**
+     * Renders the appropriate view
+     * @param commands command to render view
+     * @param status status from the command
+     */
     public void render(Commands commands, Status status){
 
         switch (commands) {

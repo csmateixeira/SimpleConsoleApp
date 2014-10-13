@@ -7,12 +7,20 @@ import com.opsource.pojo.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Carla Teixeira
+ * Command that implements countServers
+ */
 @Component
 public class CountServersCommand implements Command {
 
     @Autowired
     ServerDao serverDao;
 
+    /**
+     * Runs the command
+     * @return status with server count
+     */
     @Override
     public Status run() {
         String statusMessage =

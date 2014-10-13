@@ -4,12 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * @author Carla Teixeira
+ * Database entity
+ */
 @Entity(name = "SERVER")
 public class Server{
 
     @Id
     @Column(name = "ID")
-    // QUE? DB seems to accept a way larger number than the one that Integer accepts as maximum
+    // NOTE: DB seems to accept a way larger number than the one that Integer accepts as maximum
 	private int id;
 
     @Column(name = "NAME")

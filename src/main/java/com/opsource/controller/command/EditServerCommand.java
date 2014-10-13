@@ -10,6 +10,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Carla Teixeira
+ * Command that implements editServer
+ */
 @Component
 public class EditServerCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -22,6 +26,11 @@ public class EditServerCommand implements Command {
         return null;
     }
 
+    /**
+     * Runs the command
+     * @param args command arguments (server id and new name)
+     * @return status with edited server id and new name
+     */
     @Override
     public Status run(Server args) {
 

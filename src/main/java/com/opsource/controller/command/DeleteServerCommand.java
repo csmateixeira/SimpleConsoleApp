@@ -10,9 +10,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Carla Teixeira
+ * Command that implements deleteServer
+ */
 @Component
 public class DeleteServerCommand implements Command {
-private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     ServerDao serverDao;
@@ -22,6 +26,11 @@ private static final Logger LOGGER = LogManager.getLogger();
         return null;
     }
 
+    /**
+     * Runs the command
+     * @param args command arguments (server id to delete)
+     * @return status with id of deleted server
+     */
     @Override
     public Status run(Server args) {
 

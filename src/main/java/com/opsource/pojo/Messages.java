@@ -1,5 +1,9 @@
 package com.opsource.pojo;
 
+/**
+ * @author Carla Teixeira
+ * Display messages for command Status
+ */
 public class Messages {
 
     public static final String NO_SERVERS_FOUND_MESSAGE = " # no servers in database";

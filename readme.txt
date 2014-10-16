@@ -17,7 +17,7 @@ for addServer a file name only is passed in so the file should be in the resourc
 
 JUnit tests report
 
-JUnit tests reports are placed on the surefire-reports/ directory.
+JUnit tests reports are placed in the target/surefire-reports/ directory under the main project folder.
 
 Instructions:
 

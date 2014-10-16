@@ -1,3 +1,26 @@
+To build:
+
+.\build.bat 
+  > This does a mvn clean package. 
+
+If you pass arguments to the build.bat script it will run the mvn command with passed arguments.
+All the files needed to run the program will be moved to a "final" folder under the main project directory.
+The app was built in a windows computer. I have provided both batch and shell scripts for for build and run but it was mostly tested in Windows.
+I have used the maven shade plugin to create a Uber jar with all dependencies included - the shade goal is associated with the maven package phase.
+
+To run:
+
+.\run.bat
+
+It will use the configuration files in the resources/db.properties file to connect to the database.
+for addServer a file name only is passed in so the file should be in the resources/ directory.
+
+JUnit tests report
+
+JUnit tests reports are placed on the surefire-reports/ directory.
+
+Instructions:
+
 Simple command line Java application with database access
 Main functionality:
 - command line driven (main class:  MainApp)

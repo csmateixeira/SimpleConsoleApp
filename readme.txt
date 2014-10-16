@@ -15,6 +15,10 @@ To run:
 It will use the configuration files in the resources/db.properties file to connect to the database.
 for addServer a file name only is passed in so the file should be in the resources/ directory.
 
+Logs:
+
+Logs are stored in the final/logs/ directory under the project directory.
+
 JUnit tests report
 
 JUnit tests reports are placed in the target/surefire-reports/ directory under the main project folder.

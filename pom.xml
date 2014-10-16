@@ -97,6 +97,13 @@
             <version>${log4j.version}</version>
         </dependency>
 
+        <!-- Utils -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -112,7 +119,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/resources</outputDirectory>
+                            <outputDirectory>${project.basedir}/final/resources</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/external-resources</directory>
@@ -127,7 +134,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <outputDirectory>${project.basedir}/final</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/build-resources</directory>
@@ -157,30 +164,19 @@
                                     <resource>META-INF/spring.schemas</resource>
                                 </transformer>
                             </transformers>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>resources/*.properties</exclude>
+                                    <exclude>build-resources/*</exclude>
+                                    <exclude>external-resources/*</exclude>
+                                </excludes>
+                            </artifactSet>
+                            <outputDirectory>${project.basedir}/final</outputDirectory>
+                            <finalName>OpsourceSimpleApp</finalName>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/external-resources</directory>
-                <excludes>
-                    <exclude>*</exclude>
-                </excludes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/build-resources</directory>
-                <excludes>
-                    <exclude>*</exclude>
-                </excludes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
     </build>
 </project>

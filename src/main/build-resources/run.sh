@@ -1,2 +1,2 @@
 #!/bin/sh
-java -cp ".;resources;OpsourceSimpleApp-1.0-SNAPSHOT.jar" com.opsource.MainApp
+java -cp "resources:OpsourceSimpleApp.jar" com.opsource.MainApp

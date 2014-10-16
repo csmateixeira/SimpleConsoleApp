@@ -5,5 +5,3 @@ mvn %*
 
 :cleanpackage
 mvn clean package
-
-

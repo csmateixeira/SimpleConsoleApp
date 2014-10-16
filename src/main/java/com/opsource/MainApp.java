@@ -7,6 +7,7 @@ import com.opsource.views.HelpView;
 import com.opsource.views.ViewFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import sun.tools.jar.CommandLine;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -36,6 +37,7 @@ public class MainApp {
             try{
                 Scanner scanIn = new Scanner(System.in);
                 String option = scanIn.nextLine();
+
                 consoleController.runConsole(option);
 
             } catch (NoSuchElementException e){

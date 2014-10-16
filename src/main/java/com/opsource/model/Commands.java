@@ -1,5 +1,7 @@
 package com.opsource.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @author Carla Teixeira
  * Possible commands and their descriptions
@@ -36,6 +38,9 @@ public enum Commands {
      * @return command details
      */
     public static Commands getCommandFromCommandString(String command){
+
+        if(StringUtils.isEmpty(command))
+            return INVALID_COMMAND;
 
         for (Commands c : values()){
             if(c.getCommand().equalsIgnoreCase(command))

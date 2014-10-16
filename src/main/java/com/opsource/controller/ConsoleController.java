@@ -2,6 +2,7 @@ package com.opsource.controller;
 
 import com.opsource.model.Commands;
 import com.opsource.model.Status;
+import com.opsource.pojo.CommandLineParser;
 import com.opsource.pojo.Constants;
 import com.opsource.pojo.ResourceLocator;
 import com.opsource.pojo.exceptions.InvalidServerIdException;
@@ -10,15 +11,12 @@ import com.opsource.views.ViewFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 /**
  * @author Carla Teixeira
@@ -43,7 +41,8 @@ public class ConsoleController {
      */
     public void runConsole(String option) {
         // get command and arguments
-        String[] commandString = option.split(" ");
+        //parse command line input
+        String[] commandString = CommandLineParser.parse(option);
 
         Commands command = Commands.getCommandFromCommandString(commandString[0]);
 
